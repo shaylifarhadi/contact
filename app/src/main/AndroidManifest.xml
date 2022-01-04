@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyContanct">
         <activity
+            android:name=".ui.call.CallActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.create.CreateActivity"
             android:exported="true" />
         <activity

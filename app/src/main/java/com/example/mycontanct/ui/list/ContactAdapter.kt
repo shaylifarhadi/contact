@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycontanct.databinding.ItemContactBinding
 import com.example.mycontanct.datamodel.Contact
+import android.content.Intent
+import android.net.Uri
+
 
 class ContactAdapter(
     private val contactList: List<Contact>,
     private val context: Context,
-    val onClickCall: (Int) -> Unit
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -19,7 +21,6 @@ class ContactAdapter(
         )
         return ContactViewHolder(binding)
     }
-
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val item = contactList[position]
@@ -39,7 +40,11 @@ class ContactAdapter(
 
         fun bind(position: Int){
             binding.imgCall.setOnClickListener {
-                onClickCall.invoke(position)
+                val position = contactList[adapterPosition]
+
+                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${position.number}"))
+                intent.putExtra("number",position)
+                context.startActivity(intent)
             }
         }
 

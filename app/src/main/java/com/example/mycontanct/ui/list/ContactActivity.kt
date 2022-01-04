@@ -52,7 +52,7 @@ class ContactActivity : AppCompatActivity() {
        != PackageManager.PERMISSION_GRANTED){
            getPermission()
        }else{
-           onCallClick(position = viewModel.allContact.)
+       /*    onCallClick(position = viewModel.allContact.)*/
        }
     }
 
@@ -63,12 +63,13 @@ class ContactActivity : AppCompatActivity() {
     }
 
     private fun createRecycler(it: List<Contact>) {
-        adapter = ContactAdapter(it, this,::onCallClick)
+        adapter = ContactAdapter(it, this)
         binding.rvContact.adapter = adapter
     }
 
-    private fun onCallClick(position: Int) {
+  /*  private fun onCallClick(position: Int) {
         val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:1122334455"))
+        intent.putExtra("number",position)
         startActivity(intent)
-    }
+    }*/
 }
