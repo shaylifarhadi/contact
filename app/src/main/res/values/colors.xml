@@ -8,9 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_800">#7F7C82</color>
-    <color name="purple_300">#BFA2DB</color>
-    <color name="purple_100">#F0D9FF</color>
     <color name="gray_100">#F3F1F5</color>
+    <color name="teal_900">#003d33</color>
+    <color name="teal_800">#00695c</color>
+    <color name="teal_500">#439889</color>
 
 
 </resources>

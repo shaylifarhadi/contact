@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/MyContanct/app/src/main/res/drawable/ic_account.xml" value="0.2203125" />
         <entry key="..\:/MyContanct/app/src/main/res/drawable/ic_add.xml" value="0.2203125" />
+        <entry key="..\:/MyContanct/app/src/main/res/drawable/ic_add2.xml" value="0.2203125" />
         <entry key="..\:/MyContanct/app/src/main/res/drawable/ic_call.xml" value="0.2203125" />
         <entry key="..\:/MyContanct/app/src/main/res/drawable/rec_btn.xml" value="0.2203125" />
         <entry key="..\:/MyContanct/app/src/main/res/drawable/rec_create.xml" value="0.2203125" />
@@ -13,7 +14,7 @@
         <entry key="..\:/MyContanct/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/MyContanct/app/src/main/res/layout/create_fragment.xml" value="0.25" />
         <entry key="..\:/MyContanct/app/src/main/res/layout/fragment_base.xml" value="0.1" />
-        <entry key="..\:/MyContanct/app/src/main/res/layout/item_contact.xml" value="0.33" />
+        <entry key="..\:/MyContanct/app/src/main/res/layout/item_contact.xml" value="0.22" />
         <entry key="..\:/MyContanct/app/src/main/res/layout/list_fragment.xml" value="0.19010416666666666" />
       </map>
     </option>

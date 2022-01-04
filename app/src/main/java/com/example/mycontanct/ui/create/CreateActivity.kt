@@ -7,7 +7,9 @@ import androidx.activity.viewModels
 import com.example.mycontanct.databinding.ActivityCreateBinding
 import com.example.mycontanct.datamodel.Contact
 import com.example.mycontanct.ui.list.ContactActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CreateActivity : AppCompatActivity() {
 
     val viewModel : CreateViewModel by viewModels()
@@ -21,12 +23,11 @@ class CreateActivity : AppCompatActivity() {
         binding.btnSave.setOnClickListener {
 
             val name = binding.name.text.toString()
-            val number = binding.num.text.toString()
+            val phoneNumber = binding.num.text.toString()
 
-            val contact = Contact(name,number)
+            val contact = Contact(name,phoneNumber)
             viewModel.contactDao.insertContact(contact)
             val intent = Intent(this,ContactActivity::class.java)
-          /* val nameEt = Contact(binding.editName.toString(),binding.editPhone.toString())*/
             intent.putExtra("name",contact)
             startActivity(intent)
         }

@@ -9,7 +9,8 @@ import com.example.mycontanct.datamodel.Contact
 
 class ContactAdapter(
     private val contactList: List<Contact>,
-    private val context: Context
+    private val context: Context,
+    val onClickCall: (Int) -> Unit
 ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -19,17 +20,29 @@ class ContactAdapter(
         return ContactViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val item = contactList[position]
         holder.binding.apply {
             tvContactName.text = item.name
             tvNumber.text = item.number
         }
+
+        holder.bind(position)
     }
     override fun getItemCount(): Int {
         return contactList.size
     }
 
     inner class ContactViewHolder(val binding: ItemContactBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root){
+
+        fun bind(position: Int){
+            binding.imgCall.setOnClickListener {
+                onClickCall.invoke(position)
+            }
+        }
+
+
+    }
 }

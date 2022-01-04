@@ -17,12 +17,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_100">
+            android:background="@color/white">
 
             <ImageView
                 android:id="@+id/img_name"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -34,15 +34,15 @@
                 android:id="@+id/tv_contact_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_name"
-                app:layout_constraintStart_toEndOf="@+id/img_name"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/img_name"
+                app:layout_constraintVertical_bias="0.384"
                 tools:text="shirin" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/img_call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -58,11 +58,17 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tv_contact_name"
-                app:layout_constraintStart_toStartOf="@+id/tv_contact_name"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/tv_contact_name"
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="0912 45899566" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="69dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
