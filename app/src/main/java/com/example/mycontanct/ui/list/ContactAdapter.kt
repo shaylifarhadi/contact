@@ -1,53 +1,138 @@
 package com.example.mycontanct.ui.list
 
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mycontanct.databinding.ItemContactBinding
-import com.example.mycontanct.datamodel.Contact
 import android.content.Intent
 import android.net.Uri
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mycontanct.datamodel.Contact
+import androidx.recyclerview.widget.DiffUtil
+import com.example.mycontanct.databinding.ItemContactBinding
 
 
-class ContactAdapter(
-    private val contactList: List<Contact>,
-    private val context: Context,
-) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        val binding = ItemContactBinding.inflate(
-            LayoutInflater.from(context), parent, false
-        )
-        return ContactViewHolder(binding)
-    }
-
+class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
+    PagingDataAdapter<Contact, ContactAdapter.ContactViewHolder>(
+        ContactDiffCallback()
+    ) {
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        val item = contactList[position]
-        holder.binding.apply {
-            tvContactName.text = item.name
-            tvNumber.text = item.number
+        val data = getItem(position)
+
+        if (data != null) {
+            holder.bind(data)
+        } else {
+            holder.clear()
         }
 
         holder.bind(position)
     }
-    override fun getItemCount(): Int {
-        return contactList.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
+        return ContactViewHolder(
+            ItemContactBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
-    inner class ContactViewHolder(val binding: ItemContactBinding) :
-        RecyclerView.ViewHolder(binding.root){
+    inner class ContactViewHolder(private val binding: ItemContactBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(position: Int){
-            binding.imgCall.setOnClickListener {
-                val position = contactList[adapterPosition]
 
-                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${position.number}"))
-                intent.putExtra("number",position)
-                context.startActivity(intent)
+/*        intent = Intent()
+        var user = intent.getParcelableExtra<Contact>("name")*/
+
+
+        fun bind(data: Contact) {
+            binding.let {
+                it.tvContactName.text = data.name
+                it.tvNumber.text = data.number
+
             }
         }
 
+        fun clear() {
+            binding.tvContactName.text = ""
+            binding.tvNumber.text = ""
+        }
 
+        fun bind(position: Int) {
+            binding.imgCall.setOnClickListener {
+                onCallClick.invoke(position)
+            }
+        }
     }
 }
+
+class ContactDiffCallback : DiffUtil.ItemCallback<Contact>() {
+    override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
+
+/*
+
+class ContactAdapter(val context : Context, val onCallClick: (Int) -> Unit) :
+    PagedListAdapter<Contact, ContactAdapter.ContactViewHolder>(
+        ContactDiffCallback()
+    ) {
+    override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
+        val data = getItem(position)
+
+        if (data != null) {
+            holder.bind(data)
+        }else{
+            holder.clear()
+        }
+
+        holder.bind(position)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
+        return ContactViewHolder(
+            ItemContactBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false))
+    }
+    inner class ContactViewHolder(private val binding: ItemContactBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        val intent = Intent()
+        var user = intent.getParcelableExtra<Contact>("name")
+
+        fun bind(data: Contact) {
+            binding.let {
+                it.tvContactName.text = user?.name
+                it.tvNumber.text = data.number
+            }
+        }
+        fun clear(){
+            binding.tvContactName.text = ""
+            binding.tvNumber.text = ""
+        }
+
+        fun bind(position: Int){
+            binding.imgCall.setOnClickListener {
+                onCallClick.invoke(position)
+            }
+        }
+    }
+}
+class ContactDiffCallback : DiffUtil.ItemCallback<Contact>() {
+    override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+        return oldItem.id == newItem.id
+    }
+    override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+        return oldItem == newItem
+    }
+
+}*/

@@ -10,7 +10,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateViewModel @Inject constructor(private val repository: ContactRepository,val contactDao: ContactDao): ViewModel() {
+class CreateViewModel @Inject constructor(
+    private val repository: ContactRepository,
+    val contactDao: ContactDao
+) : ViewModel() {
+
 
     fun insertContact(contact: Contact) {
         viewModelScope.launch {

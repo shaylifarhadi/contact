@@ -13,12 +13,12 @@ import com.example.mycontanct.databinding.ActivityContactBinding
 import com.example.mycontanct.datamodel.Contact
 import com.example.mycontanct.ui.create.CreateActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_contact.*
 
 @AndroidEntryPoint
 class ContactActivity : AppCompatActivity() {
 
     private val CALL_REQUEST_CODE = 100
-
     private val viewModel: ContactViewModel by viewModels()
     private lateinit var binding: ActivityContactBinding
     private lateinit var adapter: ContactAdapter
@@ -27,6 +27,9 @@ class ContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val pagingAdapter = ContactAdapter(this, ::onClickCall)
+        binding.rvContact.adapter = pagingAdapter
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -38,38 +41,38 @@ class ContactActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val user = intent.getParcelableExtra<Contact>("name")
-     /*   binding.tvEmpty.text = user?.name.toString()
-        binding.tv.text = user?.number.toString()*/
-
-        viewModel.allContact.observe(this) {
-            createRecycler(it)
+        viewModel.contactList.observe(this) {
+            pagingAdapter.submitData(lifecycle, it)
         }
+  /*      adapter = ContactAdapter(this, ::onClickCall)
+        binding.rvContact.adapter = adapter
+*/
+
+        var user = intent.getParcelableExtra<Contact>("name")
+
     }
 
-   private fun checkPermission() {
-       if (ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)
+
+ private fun checkPermission() {
+       if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
        != PackageManager.PERMISSION_GRANTED){
            getPermission()
        }else{
-       /*    onCallClick(position = viewModel.allContact.)*/
+
        }
     }
 
-    private fun getPermission() {
 
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE),
-        CALL_REQUEST_CODE)
-    }
+      private fun getPermission() {
+      ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE),
+      CALL_REQUEST_CODE)
+  }
 
-    private fun createRecycler(it: List<Contact>) {
-        adapter = ContactAdapter(it, this)
-        binding.rvContact.adapter = adapter
-    }
+    private fun onClickCall(position: Int) {
+        var user = intent.getParcelableExtra<Contact>("name")
+        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${user?.number}"))
+        intent.putExtra("number", position)
+        this.startActivity(intent)
+   }
 
-  /*  private fun onCallClick(position: Int) {
-        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:1122334455"))
-        intent.putExtra("number",position)
-        startActivity(intent)
-    }*/
 }

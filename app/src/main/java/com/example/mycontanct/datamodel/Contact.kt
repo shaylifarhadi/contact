@@ -10,10 +10,11 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "contact_table")
 data class Contact(
     @ColumnInfo(name = "contact_name")
-    var name: String?,
+    var name: String,
 
     @ColumnInfo(name = "contact_number")
-    var number: String?,
+    var number: String,
+
 
     @ColumnInfo(name = "contact_id")
     @PrimaryKey(autoGenerate = true)

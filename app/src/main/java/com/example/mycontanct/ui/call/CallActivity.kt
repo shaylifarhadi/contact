@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import com.example.mycontanct.R
 import com.example.mycontanct.databinding.ActivityCallBinding
 import com.example.mycontanct.ui.list.ContactAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CallActivity : AppCompatActivity() {
 
     lateinit var adapter: ContactAdapter

@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.mycontanct.databinding.ActivityCreateBinding
 import com.example.mycontanct.datamodel.Contact
+import com.example.mycontanct.db.ContactRepository
 import com.example.mycontanct.ui.list.ContactActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,10 +27,12 @@ class CreateActivity : AppCompatActivity() {
             val phoneNumber = binding.num.text.toString()
 
             val contact = Contact(name,phoneNumber)
+
             viewModel.contactDao.insertContact(contact)
             val intent = Intent(this,ContactActivity::class.java)
             intent.putExtra("name",contact)
             startActivity(intent)
+            finish()
         }
 
     }

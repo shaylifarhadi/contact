@@ -46,7 +46,7 @@
             />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/img_logo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintBottom_toTopOf="@+id/rv_contact"
@@ -54,7 +54,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/phone" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
