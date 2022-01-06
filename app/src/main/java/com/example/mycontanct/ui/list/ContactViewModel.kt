@@ -34,5 +34,4 @@ class ContactViewModel @Inject constructor(
                 )
         ).liveData
 
-
 }

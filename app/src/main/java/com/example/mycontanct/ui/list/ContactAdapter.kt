@@ -14,7 +14,6 @@ import com.example.mycontanct.datamodel.Contact
 import androidx.recyclerview.widget.DiffUtil
 import com.example.mycontanct.databinding.ItemContactBinding
 
-
 class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
     PagingDataAdapter<Contact, ContactAdapter.ContactViewHolder>(
         ContactDiffCallback()
@@ -80,10 +79,13 @@ class ContactDiffCallback : DiffUtil.ItemCallback<Contact>() {
 }
 
 
+
+
+//end
 /*
 
-class ContactAdapter(val context : Context, val onCallClick: (Int) -> Unit) :
-    PagedListAdapter<Contact, ContactAdapter.ContactViewHolder>(
+class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
+    PagingDataAdapter<Contact, ContactAdapter.ContactViewHolder>(
         ContactDiffCallback()
     ) {
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
@@ -91,7 +93,7 @@ class ContactAdapter(val context : Context, val onCallClick: (Int) -> Unit) :
 
         if (data != null) {
             holder.bind(data)
-        }else{
+        } else {
             holder.clear()
         }
 
@@ -101,38 +103,51 @@ class ContactAdapter(val context : Context, val onCallClick: (Int) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         return ContactViewHolder(
             ItemContactBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false))
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
+
     inner class ContactViewHolder(private val binding: ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        val intent = Intent()
-        var user = intent.getParcelableExtra<Contact>("name")
+
+*/
+/*        intent = Intent()
+        var user = intent.getParcelableExtra<Contact>("name")*//*
+
+
 
         fun bind(data: Contact) {
             binding.let {
-                it.tvContactName.text = user?.name
+                it.tvContactName.text = data.name
                 it.tvNumber.text = data.number
+
             }
         }
-        fun clear(){
+
+        fun clear() {
             binding.tvContactName.text = ""
             binding.tvNumber.text = ""
         }
 
-        fun bind(position: Int){
+        fun bind(position: Int) {
             binding.imgCall.setOnClickListener {
                 onCallClick.invoke(position)
             }
         }
     }
 }
+
 class ContactDiffCallback : DiffUtil.ItemCallback<Contact>() {
     override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
         return oldItem.id == newItem.id
     }
+
     override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
         return oldItem == newItem
     }
 
-}*/
+}
+
+*/

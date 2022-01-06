@@ -20,7 +20,5 @@ class ContactRepository @Inject constructor(
           withContext(Dispatchers.IO){
               insert(contact)
           }
-
     }
-
 }

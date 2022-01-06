@@ -34,26 +34,29 @@
             app:tint="@color/white"/>
 
         <TextView
-            android:id="@+id/tv_empty"
+            android:id="@+id/tv_phone_contact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/rv_contact"
-            />
-
-        <ImageView
-            android:id="@+id/img_logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:text="@string/phone"
+            android:textSize="38sp"
+            android:textColor="@color/teal_700"
             app:layout_constraintBottom_toTopOf="@+id/rv_contact"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--
+        <TextView
+            android:id="@+id/tv_empty_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_phone_is_empty"
+            android:textSize="24sp"
+            android:textColor="@color/blue_300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintVertical_bias="0.43" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
