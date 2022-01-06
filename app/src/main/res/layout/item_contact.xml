@@ -10,11 +10,11 @@
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="55dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="2dp"
-        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white">
+            android:background="@color/gray_100">
 
             <ImageView
                 android:id="@+id/img_name"
@@ -39,11 +39,10 @@
                 android:id="@+id/tv_contact_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_name"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_number"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/img_name"
-                app:layout_constraintVertical_bias="0.384"
                 tools:text="shirin" />
 
             <ImageView
@@ -60,14 +59,11 @@
                 android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="2dp"
                 android:textColor="@color/gray_800"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/tv_contact_name"
-                app:layout_constraintVertical_bias="1.0"
                 tools:text="0912 45899566" />
 
             <androidx.constraintlayout.widget.Guideline
