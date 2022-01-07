@@ -10,15 +10,13 @@ import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
 class ContactRepository @Inject constructor(
-    private val contactDao: ContactDao,
+    val contactDao: ContactDao,
     val db: ContactDatabase
 ) {
 
-   val allContact: DataSource.Factory<Int, Contact> = contactDao.getContactList()
+    val allContact: DataSource.Factory<Int, Contact> = contactDao.getContactList()
 
-    suspend fun insert(contact: Contact) {
-          withContext(Dispatchers.IO){
-              insert(contact)
-          }
+    fun insert(contact: Contact) {
+        insert(contact)
     }
 }

@@ -41,16 +41,10 @@ class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
     inner class ContactViewHolder(private val binding: ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
-/*        intent = Intent()
-        var user = intent.getParcelableExtra<Contact>("name")*/
-
-
         fun bind(data: Contact) {
             binding.let {
                 it.tvContactName.text = data.name
                 it.tvNumber.text = data.number
-
             }
         }
 
@@ -78,76 +72,3 @@ class ContactDiffCallback : DiffUtil.ItemCallback<Contact>() {
 
 }
 
-
-
-
-//end
-/*
-
-class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
-    PagingDataAdapter<Contact, ContactAdapter.ContactViewHolder>(
-        ContactDiffCallback()
-    ) {
-    override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        val data = getItem(position)
-
-        if (data != null) {
-            holder.bind(data)
-        } else {
-            holder.clear()
-        }
-
-        holder.bind(position)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        return ContactViewHolder(
-            ItemContactBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
-    }
-
-    inner class ContactViewHolder(private val binding: ItemContactBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-
-*/
-/*        intent = Intent()
-        var user = intent.getParcelableExtra<Contact>("name")*//*
-
-
-
-        fun bind(data: Contact) {
-            binding.let {
-                it.tvContactName.text = data.name
-                it.tvNumber.text = data.number
-
-            }
-        }
-
-        fun clear() {
-            binding.tvContactName.text = ""
-            binding.tvNumber.text = ""
-        }
-
-        fun bind(position: Int) {
-            binding.imgCall.setOnClickListener {
-                onCallClick.invoke(position)
-            }
-        }
-    }
-}
-
-class ContactDiffCallback : DiffUtil.ItemCallback<Contact>() {
-    override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
-        return oldItem == newItem
-    }
-
-}
-
-*/
