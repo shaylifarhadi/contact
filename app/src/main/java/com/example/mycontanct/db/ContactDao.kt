@@ -1,7 +1,10 @@
 package com.example.mycontanct.db
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
+import androidx.paging.PagingData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.mycontanct.datamodel.Contact
@@ -18,5 +21,8 @@ interface ContactDao {
 
     @Insert
     fun insertContact(contact: Contact)
+
+    @Delete
+    fun deleteContact(contact:Contact)
 
 }

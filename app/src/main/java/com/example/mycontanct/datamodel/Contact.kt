@@ -6,7 +6,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 @Entity(tableName = "contact_table")
 data class Contact(
     @ColumnInfo(name = "contact_name")
@@ -19,5 +18,5 @@ data class Contact(
     @ColumnInfo(name = "contact_id")
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-) : Parcelable
+)
 

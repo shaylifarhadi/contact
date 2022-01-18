@@ -27,5 +27,6 @@ class SplashActivity : AppCompatActivity() {
     private fun openContactActivity() {
         val intent = Intent(this, ContactActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

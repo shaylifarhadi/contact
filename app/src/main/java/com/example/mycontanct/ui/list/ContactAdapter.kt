@@ -2,6 +2,7 @@ package com.example.mycontanct.ui.list
 
 import android.content.Context
 import android.content.Intent
+import android.icu.text.Transliterator
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,11 +15,14 @@ import com.example.mycontanct.datamodel.Contact
 import androidx.recyclerview.widget.DiffUtil
 import com.example.mycontanct.databinding.ItemContactBinding
 
-class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
+class ContactAdapter(
+    val context : Context, val onCallClick : (String) -> Unit,
+    val onClickDelete : (Contact) -> Unit
+) :
     PagingDataAdapter<Contact, ContactAdapter.ContactViewHolder>(
         ContactDiffCallback()
     ) {
-    override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
+    override fun onBindViewHolder(holder : ContactViewHolder, position : Int) {
         val data = getItem(position)
 
         if (data != null) {
@@ -27,10 +31,9 @@ class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
             holder.clear()
         }
 
-        holder.bind(position)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
+    override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : ContactViewHolder {
         return ContactViewHolder(
             ItemContactBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
@@ -38,13 +41,21 @@ class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
         )
     }
 
-    inner class ContactViewHolder(private val binding: ItemContactBinding) :
+    inner class ContactViewHolder(private val binding : ItemContactBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Contact) {
+        fun bind(data : Contact) {
             binding.let {
                 it.tvContactName.text = data.name
                 it.tvNumber.text = data.number
+            }
+
+            binding.imgCall.setOnClickListener {
+                onCallClick.invoke(data.number)
+            }
+
+            binding.imgDelete.setOnClickListener {
+                onClickDelete.invoke(data)
             }
         }
 
@@ -52,21 +63,15 @@ class ContactAdapter(val context: Context, val onCallClick: (Int) -> Unit) :
             binding.tvContactName.text = ""
             binding.tvNumber.text = ""
         }
-
-        fun bind(position: Int) {
-            binding.imgCall.setOnClickListener {
-                onCallClick.invoke(position)
-            }
-        }
     }
 }
 
 class ContactDiffCallback : DiffUtil.ItemCallback<Contact>() {
-    override fun areItemsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+    override fun areItemsTheSame(oldItem : Contact, newItem : Contact) : Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
+    override fun areContentsTheSame(oldItem : Contact, newItem : Contact) : Boolean {
         return oldItem == newItem
     }
 

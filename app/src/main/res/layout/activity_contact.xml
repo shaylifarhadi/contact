@@ -7,6 +7,12 @@
         <variable
             name="viewModel"
             type="com.example.mycontanct.ui.list.ContactViewModel" />
+        <variable
+            name="adapter"
+            type="com.example.mycontanct.ui.list.ContactAdapter" />
+        <variable
+            name="fabClick"
+            type="android.view.View.OnClickListener" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,6 +23,7 @@
             android:id="@+id/rv_contact"
             android:layout_width="match_parent"
             android:layout_height="500dp"
+            app:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_contact" />
@@ -28,6 +35,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
+            android:onClickListener="@{fabClick}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add2"

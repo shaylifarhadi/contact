@@ -23,6 +23,8 @@ class ContactViewModel @Inject constructor(
 ) :
     ViewModel() {
 
+
+
     @SuppressLint("RestrictedApi")
     val contactList: LiveData<PagingData<Contact>> =
         Pager(
@@ -30,8 +32,7 @@ class ContactViewModel @Inject constructor(
             null,
             contactDao.getContactList()
                 .asPagingSourceFactory(
-                    ArchTaskExecutor.getIOThreadExecutor().asCoroutineDispatcher()
-                )
+                    ArchTaskExecutor.getIOThreadExecutor().asCoroutineDispatcher())
         ).liveData
 
 }

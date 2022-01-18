@@ -2,12 +2,7 @@ package com.example.mycontanct.db
 
 import androidx.paging.*
 import com.example.mycontanct.datamodel.Contact
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import kotlin.coroutines.suspendCoroutine
 
 class ContactRepository @Inject constructor(
     val contactDao: ContactDao,
@@ -18,5 +13,8 @@ class ContactRepository @Inject constructor(
 
     fun insert(contact: Contact) {
         insert(contact)
+    }
+    fun delete(contact:Contact){
+        delete(contact)
     }
 }

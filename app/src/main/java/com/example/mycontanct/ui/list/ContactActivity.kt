@@ -15,6 +15,7 @@ import androidx.core.os.persistableBundleOf
 import androidx.paging.filter
 import com.example.mycontanct.databinding.ActivityContactBinding
 import com.example.mycontanct.datamodel.Contact
+import com.example.mycontanct.db.ContactDao
 import com.example.mycontanct.ui.create.CreateActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +26,7 @@ class ContactActivity : AppCompatActivity() {
     private val viewModel: ContactViewModel by viewModels()
     private lateinit var binding: ActivityContactBinding
     private lateinit var adapter: ContactAdapter
+    lateinit var contactDao : ContactDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,25 +38,18 @@ class ContactActivity : AppCompatActivity() {
 
         checkPermission()
 
-        binding.fabAdd.setOnClickListener {
+        binding.fabClick = View.OnClickListener {
             val intent = Intent(this, CreateActivity::class.java)
             startActivity(intent)
-
         }
 
-        val pagingAdapter = ContactAdapter(this, ::onClickCall)
-        binding.rvContact.adapter = pagingAdapter
-        pagingAdapter(pagingAdapter)
-
-        var user = intent.getParcelableExtra<Contact>("name")
-
-    }
-
-    private fun pagingAdapter(pagingAdapter: ContactAdapter) {
+        val pagingAdapter = ContactAdapter(this, ::onClickCall,::onClickDelete)
+        binding.adapter = pagingAdapter
         viewModel.contactList.observe(this) {
             pagingAdapter.submitData(lifecycle, it)
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -90,10 +85,14 @@ class ContactActivity : AppCompatActivity() {
         )
     }
 
-    private fun onClickCall(position: Int) {
-        var user = intent.getParcelableExtra<Contact>("name")
-        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${user?.number}"))
-        intent.putExtra("number", position)
+    private fun onClickCall(phoneNumber:String) {
+        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${phoneNumber}"))
         this.startActivity(intent)
     }
+
+    private fun onClickDelete(contact:Contact) {
+        viewModel.contactDao.deleteContact(contact)
+    }
 }
+
+

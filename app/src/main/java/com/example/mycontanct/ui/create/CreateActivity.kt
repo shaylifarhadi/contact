@@ -29,9 +29,9 @@ class CreateActivity : AppCompatActivity() {
             val contact = Contact(name,phoneNumber)
 
             viewModel.contactDao.insertContact(contact)
-            val intent = Intent(this,ContactActivity::class.java)
+           /* val intent = Intent(this,ContactActivity::class.java)
             intent.putExtra("name",contact)
-            startActivity(intent)
+         //   startActivity(intent)*/
             finish()
         }
     }

@@ -19,7 +19,7 @@ object AppModule {
 
     @Singleton // Tell Dagger-Hilt to create a singleton accessible everywhere in ApplicationComponent
     @Provides
-    fun provideContactDatabase(@ApplicationContext app: Context) =
+    fun provideContactDatabase(@ApplicationContext app : Context) =
         Room.databaseBuilder(
             app, ContactDatabase::class.java,
             "contact_database"
@@ -29,6 +29,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideContactDao(contactDb: ContactDatabase) = contactDb.getContactDao()
+    fun provideContactDao(contactDb : ContactDatabase) : ContactDao {
+        return contactDb.getContactDao()
+    }
 
 }
