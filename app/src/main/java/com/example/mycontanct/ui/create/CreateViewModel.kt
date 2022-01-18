@@ -11,16 +11,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CreateViewModel @Inject constructor(
-    private val repository: ContactRepository,
     val contactDao: ContactDao
 ) : ViewModel() {
 
-
-    fun insertContact(contact: Contact) {
+   /* fun insertContact(contact: Contact) {
         viewModelScope.launch {
             repository.insert(contact)
         }
-    }
+    }*/
 }
 
 

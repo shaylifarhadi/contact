@@ -19,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ContactViewModel @Inject constructor(
     val contactDao: ContactDao,
-    private val repository: ContactRepository,
 ) :
     ViewModel() {
 

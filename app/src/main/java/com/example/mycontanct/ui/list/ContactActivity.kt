@@ -43,6 +43,7 @@ class ContactActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         val pagingAdapter = ContactAdapter(this, ::onClickCall,::onClickDelete)
         binding.adapter = pagingAdapter
         viewModel.contactList.observe(this) {
